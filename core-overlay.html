@@ -468,13 +468,11 @@ Fired when the `core-overlay`'s `opened` property changes.
     positionTarget: function() {
       // vertically and horizontally center if not positioned
       if (this._shouldPosition.top) {
-        var t = Math.max((window.innerHeight - 
-            this.target.offsetHeight - this.margin*2) / 2, this.margin);
+        var t = Math.max((window.innerHeight - this.target.offsetHeight) / 2, this.margin);
         this.target.style.top = t + 'px';
       }
       if (this._shouldPosition.left) {
-        var l = Math.max((window.innerWidth - 
-            this.target.offsetWidth - this.margin*2) / 2, this.margin);
+        var l = Math.max((window.innerWidth - this.target.offsetWidth) / 2, this.margin);
         this.target.style.left = l + 'px';
       }
     },
