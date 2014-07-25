@@ -436,8 +436,12 @@ Fired when the `core-overlay`'s `opened` property changes.
       if (this.opened) {
         focusNode.focus();
       } else {
-        focusNode.blur();
-        focusOverlay();
+        if (focusNode != this.blurringNode) {
+          this.blurringNode = focusNode;
+          focusNode.blur();
+          focusOverlay();
+          this.blurringNode = null;
+        }
       }
     },
 
