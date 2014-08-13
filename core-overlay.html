@@ -156,6 +156,16 @@ Fired when the `core-overlay`'s `opened` property changes.
        */
       autoCloseDisabled: false,
 
+        /**
+         * By default an overlay will focus automatically node with attribute [autofocus]
+         * or try to focus overlay itself. Disable this
+         * behavior by setting the `autoFocusDisabled` property to true.
+         * @attribute autoFocusDisabled
+         * @type boolean
+         * @default false
+         */
+      autoFocusDisabled: false,
+
       /**
        * This property specifies an attribute on elements that should
        * close the overlay on tap. Should not set `closeSelector` if this
@@ -434,6 +444,9 @@ Fired when the `core-overlay`'s `opened` property changes.
     },
 
     applyFocus: function() {
+      if(this.autoFocusDisabled){
+          return;
+      }
       var focusNode = this.getFocusNode();
       if (this.opened) {
         focusNode.focus();
