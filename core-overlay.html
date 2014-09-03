@@ -496,10 +496,8 @@ Fired when the `core-overlay` has completely closed.
     sizeTarget: function() {
       var sizer = this.sizingTarget || this.target;
       var rect = sizer.getBoundingClientRect();
-      var mt = rect.top === this.margin ? this.margin : this.margin * 2;
-      var ml = rect.left === this.margin ? this.margin : this.margin * 2;
-      var h = window.innerHeight - rect.top - mt;
-      var w = window.innerWidth - rect.left - ml;
+      var h = window.innerHeight - rect.top - this.margin;
+      var w = window.innerWidth - rect.left - this.margin;
       sizer.style.maxHeight = h + 'px';
       sizer.style.maxWidth = w + 'px';
       sizer.style.boxSizing = 'border-box';
