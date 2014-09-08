@@ -271,9 +271,15 @@ Fired when the `core-overlay` has completely closed.
     },
 
     domReady: function() {
+      this.saveInitialDimensions();
       this.ensureTargetSetup();
     },
 
+    saveInitialDimensions: function() {
+      var computed = getComputedStyle(this.target);
+      this._initialDimensions = {top: computed.top, left: computed.left, bottom: computed.bottom, right: computed.right};
+    },
+    
     targetChanged: function(old) {
       if (this.target) {
         // really make sure tabIndex is set
@@ -283,6 +289,7 @@ Fired when the `core-overlay` has completely closed.
         this.addElementListenerList(this.target, this.targetListeners);
         this.target.style.display = 'none';
         this.target.__overlaySetup = false;
+        this.saveInitialDimensions();
       }
       if (old) {
         this.removeElementListenerList(old, this.targetListeners);
@@ -520,8 +527,12 @@ Fired when the `core-overlay` has completely closed.
     },
 
     resetTargetDimensions: function() {
-      this.target.style.top = this.target.style.left = '';
-      this.target.style.right = this.target.style.bottom = '';
+      // reset top, left, bottom and right to initial saved dimensions.
+      this.target.style.top = this._initialDimensions.top;
+      this.target.style.left = this._initialDimensions.left;
+      this.target.style.right = this._initialDimensions.right;
+      this.target.style.bottom = this._initialDimensions.bottom;
+      
       this.target.style.width = this.target.style.height = '';
       this._shouldPosition = null;
     },
