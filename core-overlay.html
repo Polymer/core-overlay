@@ -187,6 +187,17 @@ object like this: `{v: 'top', h: 'right'}`.
       autoCloseDisabled: false,
 
       /**
+       * By default the autoClose listener will activate immediately.  If
+       * you need to delay the auto-close (for example, if you wish to
+       * show the overlay in a hold event), you set this property to the
+       * number of milliseconds the listener should delay before attaching
+       * @attribute autoCloseEnableDelay
+       * @type number
+       * @default 0
+       */
+      autoCloseEnableDelay: 0,
+
+      /**
        * By default an overlay will focus its target or an element inside
        * it with the `autoFocus` attribute. Disable this
        * behavior by setting the `autoFocusDisabled` property to true.
@@ -378,7 +389,7 @@ object like this: `{v: 'top', h: 'right'}`.
           this.enableElementListener(this.opened, document,
               this.captureEventName, 'captureHandler', true);
         }
-      });
+      }, null, this.autoCloseEnableDelay);
       this.enableElementListener(this.opened, window, 'resize',
           'resizeHandler');
 
