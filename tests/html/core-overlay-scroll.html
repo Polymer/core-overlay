@@ -111,7 +111,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         function(next) {
           sectioned.style.top = sectioned.style.right = '';
           sectioned.style.left = '300px';
-          sectioned.style.bottom = '200px'
+          sectioned.style.bottom = '200px';
           testWhenOpen(sectioned, function() {
             var rect = sectioned.getBoundingClientRect();
             chai.assert.ok(0 < rect.top + 10, 'overlay constrained to window size');
