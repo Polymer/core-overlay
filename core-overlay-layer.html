@@ -101,7 +101,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       }
       if (element.__parentNode) {
         var n = element.__nextElementSibling && element.__nextElementSibling 
-            === element.__parentNode ? element.__nextElementSibling : null;
+            !== element.__parentNode ? element.__nextElementSibling : null;
         element.__parentNode.insertBefore(element, n);
       }
     },
