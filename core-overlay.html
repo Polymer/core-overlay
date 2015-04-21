@@ -446,7 +446,7 @@ object like this: `{v: 'top', h: 'right'}`.
     },
 
     renderBackdropOpened: function() {
-      if (this.backdrop && getBackdrops().length < 2) {
+      if (this.backdrop && getSameInterfaceBackdrops(this).length < 2) {
         this.scrim.classList.toggle('core-opened', this.opened);
       }
     },
@@ -454,7 +454,7 @@ object like this: `{v: 'top', h: 'right'}`.
     completeBackdrop: function() {
       if (this.backdrop) {
         trackBackdrop(this);
-        if (getBackdrops().length === 0) {
+        if (getSameInterfaceBackdrops(this).length === 0) {
           this.scrim.parentNode.removeChild(this.scrim);
         }
       }
@@ -766,6 +766,16 @@ object like this: `{v: 'top', h: 'right'}`.
         backdrops.splice(i, 1);
       }
     }
+  }
+
+  function getSameInterfaceBackdrops(element) {
+    var result = [];
+    for (var i = 0; i < backdrops.length; ++i) {
+      if (backdrops[i].tagName == element.tagName) {
+        result.push(backdrops[i]);
+      }
+    }
+    return result;
   }
 
   function getBackdrops() {
