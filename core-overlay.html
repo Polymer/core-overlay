@@ -323,7 +323,10 @@ object like this: `{v: 'top', h: 'right'}`.
         return;
       }
       if (old) {
-        this.getTransition(old).teardown(this.target);
+        var transition = this.getTransition(old);
+        if (transition) {
+          transition.teardown(this.target);
+        }
       }
       this.target.__overlaySetup = false;
     },
