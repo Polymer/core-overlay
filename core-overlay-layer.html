@@ -88,7 +88,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       element.eventController = null;
       this.replaceElement(element);
       var h = element.__host;
-      if (h) {
+      if (h && h.parentNode) {
         h.parentNode.removeChild(h);
       }
     },
