@@ -186,6 +186,16 @@ object like this: `{v: 'top', h: 'right'}`.
        */
       autoCloseDisabled: false,
 
+        /**
+         * By default an overlay will focus automatically node with attribute [autofocus]
+         * or try to focus overlay itself. Disable this
+         * behavior by setting the `autoFocusDisabled` property to true.
+         * @attribute autoFocusDisabled
+         * @type boolean
+         * @default false
+         */
+      autoFocusDisabled: false,
+
       /**
        * By default an overlay will focus its target or an element inside
        * it with the `autoFocus` attribute. Disable this
@@ -510,6 +520,9 @@ object like this: `{v: 'top', h: 'right'}`.
     },
 
     applyFocus: function() {
+      if(this.autoFocusDisabled){
+          return;
+      }
       var focusNode = this.getFocusNode();
       if (this.opened) {
         if (!this.autoFocusDisabled) {
